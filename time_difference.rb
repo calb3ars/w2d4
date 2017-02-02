@@ -56,12 +56,13 @@ def faster_sum(arr)
   sum = 0
   largest_num = arr[0]
   arr.each_with_index do |el , i|
-    sum += el if el > 0
+    sum += el
+
+    max_sum = sum if sum > max_sum
 
     largest_num = el if el > largest_num
 
-    if el < 0
-      max_sum = sum if sum > max_sum
+    if sum < 0
       sum = 0
     end
 
