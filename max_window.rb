@@ -28,14 +28,39 @@ class StackQueue
 
   def dequeue
     if @pop_stack.empty?
-      until @push_stack.empty?
-        @pop_stack.push(@push_stack.pop)
-      end
+      fill
     end
       @pop_stack.pop
   end
+
+  def fill
+    until @push_stack.empty?
+      @pop_stack.push(@push_stack.pop)
+    end
+  end
+
+  def empty?
+    @push_stack.empty? && @pop_stack.empty?
+  end
+
+  def peek
+    fill
+    @pop_stack.peek
+  end
+
+
 end
 
+# p sq = StackQueue.new
+# p sq.empty?
+# p sq.enqueue(5)
+# p sq.enqueue(7)
+# p sq.enqueue(3)
+# p sq.enqueue(4)
+# p sq.enqueue(1)
+# p sq.dequeue
+# p sq.peek
+# p sq.empty?
 #
 #
 # def optimized_range(array, w)

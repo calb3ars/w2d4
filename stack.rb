@@ -1,6 +1,9 @@
-class Stack
+class MinMaxStack
+  attr_reader :max, :min
   def initialize
     @store = []
+    @max = nil
+    @min = nil
   end
 
   def pop
@@ -8,7 +11,11 @@ class Stack
   end
 
   def push(el)
-    @store.push(el)
+    @max = el if el > @max
+    @min = el if el < @min
+
+    hash = create_hash(el)
+    @store.push(hash)
   end
 
   def peek
@@ -21,5 +28,13 @@ class Stack
 
   def empty?
     @store.empty?
+  end
+
+  def create_hash(value)
+    hash = {
+      :val => value,
+      :max => @max,
+      :min => @min
+    }
   end
 end
