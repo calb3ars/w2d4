@@ -11,8 +11,8 @@ class MinMaxStack
   end
 
   def push(el)
-    @max = el if el > @max
-    @min = el if el < @min
+    @max = el if @max.nil? || el > @max
+    @min = el if @min.nil? || el < @min
 
     hash = create_hash(el)
     @store.push(hash)
